@@ -1,9 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+# from django.http import HttpResponse
+from .models import Tours
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Asia Tours Agency")
-
-def about(request):
-    return HttpResponse("About Asia Tours Agency")
+    tours = Tours.objects.all()
+    context = {
+        "tours": tours
+    }
+    return render(request, "tours/index.html", context)
